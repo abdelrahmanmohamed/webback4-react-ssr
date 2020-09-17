@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { FormControl, Input, InputLabel } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 class BStep3 extends Component {
 
@@ -13,17 +13,17 @@ class BStep3 extends Component {
         }
         return (
             <React.Fragment>
-                <Form.Group controlId="password">
-                    <Form.Label >Password</Form.Label>
-                    <Form.Control
+                <FormControl controlId="password">
+                    <InputLabel >Password</InputLabel>
+                    <Input
                         type="password"
                         placeholder="Enter password"
                         name="password"
                         value={this.props.password}
                         onChange={this.props.handleChange}
                     />
-                </Form.Group>
-                <Button variant="success" type="submit">Sign up</Button>
+                </FormControl>
+                <Button variant="success" type="submit" onClick={this.props.handleSubmit}>Sign up</Button>
             </React.Fragment>
         );
     }

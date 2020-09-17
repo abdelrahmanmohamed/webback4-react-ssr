@@ -5,7 +5,8 @@ import {renderToString} from 'react-dom/server';
 import {ServerStyleSheet} from 'styled-components';
 
 import App from './components/FormHtml/App';
-import BootstrapApp from './components/FormRBootstrap/BootstrapApp';
+import BootstrapApp from './components/FormBootstrap/BootstrapApp';
+import MaterialApp from './components/FormMaterial/MaterialApp';
 import Layout from './components/Layout';
 
 const port = 3000;
@@ -55,6 +56,17 @@ server.get('/bootstrap', (req, res) => {
     const body = renderToString(<BootstrapApp />);
     const wrapDivEnd = `</div>`;
     const hydrateScript = `<script src="http://localhost:3000/bootstrapClient.js"></script>`;
+    const result = wrapDivStart + body + wrapDivEnd + hydrateScript;
+    res.set('Content-Type', 'text/html')
+        .set('Access-Control-Allow-Origin', ' *')
+        .send(result);
+});
+
+server.get('/material', (req, res) => {
+    const wrapDivStart = `<div id="materialApp">`;
+    const body = renderToString(<MaterialApp />);
+    const wrapDivEnd = `</div>`;
+    const hydrateScript = `<script src="http://localhost:3000/materialClient.js"></script>`;
     const result = wrapDivStart + body + wrapDivEnd + hydrateScript;
     res.set('Content-Type', 'text/html')
         .set('Access-Control-Allow-Origin', ' *')
