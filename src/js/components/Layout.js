@@ -7,7 +7,7 @@ const Layout = ({ body, styles, title }) => `
     </head>
     <body style="margin:0">
       <div id="app">${body}</div>
-      <script src="client.js"></script>
+      <script src="http://localhost:3000/client.js"></script>
     </body>
   </html>
 `;

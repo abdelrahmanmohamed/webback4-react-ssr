@@ -42,7 +42,7 @@ server.get('/', (req, res) => {
     const wrapDivStart = `<div id="app">`;
     const body = renderToString(<App/>);
     const wrapDivEnd = `</div>`;
-    const hydrateScript = `<script src="client.js"></script>`;
+    const hydrateScript = `<script src="http://localhost:3000/client.js"></script>`;
     const result = wrapDivStart + body + wrapDivEnd + hydrateScript;
     res.set('Content-Type', 'text/html')
         .set('Access-Control-Allow-Origin', ' *')
