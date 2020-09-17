@@ -19,10 +19,13 @@ const commonConfig = {
 };
 const clientConfig = {
     ...commonConfig,
-    entry: './src/js/components/client.js',
+    entry: {
+        htmlClient: './src/js/components/FormHtml/client.js',
+        bootstrapClient: './src/js/components/FormRBootstrap/bClient.js',
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'client.js',
+        filename: "[name].js",
         publicPath: '/',
     },
 };

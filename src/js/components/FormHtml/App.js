@@ -86,7 +86,7 @@ class App extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1>React Wizard Form 🧙‍♂️</h1>
+                <h1>Html React Form 🧙‍♂️</h1>
                 <p>Step {this.state.currentStep} </p>
 
                 <form onSubmit={this.handleSubmit}>

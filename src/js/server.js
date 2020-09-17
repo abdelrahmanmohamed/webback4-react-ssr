@@ -4,7 +4,8 @@ import React from 'react';
 import {renderToString} from 'react-dom/server';
 import {ServerStyleSheet} from 'styled-components';
 
-import App from './components/App';
+import App from './components/FormHtml/App';
+import BootstrapApp from './components/FormRBootstrap/BootstrapApp';
 import Layout from './components/Layout';
 
 const port = 3000;
@@ -42,7 +43,18 @@ server.get('/', (req, res) => {
     const wrapDivStart = `<div id="app">`;
     const body = renderToString(<App/>);
     const wrapDivEnd = `</div>`;
-    const hydrateScript = `<script src="http://localhost:3000/client.js"></script>`;
+    const hydrateScript = `<script src="http://localhost:3000/htmlClient.js"></script>`;
+    const result = wrapDivStart + body + wrapDivEnd + hydrateScript;
+    res.set('Content-Type', 'text/html')
+        .set('Access-Control-Allow-Origin', ' *')
+        .send(result);
+});
+
+server.get('/bootstrap', (req, res) => {
+    const wrapDivStart = `<div id="bootstrapApp">`;
+    const body = renderToString(<BootstrapApp />);
+    const wrapDivEnd = `</div>`;
+    const hydrateScript = `<script src="http://localhost:3000/bootstrapClient.js"></script>`;
     const result = wrapDivStart + body + wrapDivEnd + hydrateScript;
     res.set('Content-Type', 'text/html')
         .set('Access-Control-Allow-Origin', ' *')
