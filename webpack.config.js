@@ -21,7 +21,8 @@ const clientConfig = {
     ...commonConfig,
     entry: {
         htmlClient: './src/js/components/FormHtml/client.js',
-        bootstrapClient: './src/js/components/FormRBootstrap/bClient.js',
+        bootstrapClient: './src/js/components/FormBootstrap/bClient.js',
+        materialClient: './src/js/components/FormMaterial/mClient.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

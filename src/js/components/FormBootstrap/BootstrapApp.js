@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import BStep1 from './bStep1';
 import BStep2 from './bStep2';
@@ -89,7 +90,7 @@ class BootstrapApp extends Component {
             <React.Fragment>
                 <h1>React Bootstrap Form 🧙‍♂️</h1>
                 <p>Step {this.state.currentStep} </p>
-                <form>
+                <Form onSubmit={this.state.handleSubmit}>
                     <BStep1
                         currentStep={this.state.currentStep}
                         handleChange={this.handleChange}
@@ -104,10 +105,11 @@ class BootstrapApp extends Component {
                         currentStep={this.state.currentStep}
                         handleChange={this.handleChange}
                         password={this.state.password}
+                        handleSubmit={this.state.handleSubmit}
                     />
                     {this.previousButton()}
                     {this.nextButton()}
-                </form>
+                </Form>
 
             </React.Fragment>
         );
