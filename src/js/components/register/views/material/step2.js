@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { FormControl, Input, InputLabel } from '@material-ui/core';
+import React, {Component} from 'react';
+import {FormControl, Input, InputLabel} from '@material-ui/core';
 
-class BStep2 extends Component {
+class Step2 extends Component {
 
     constructor(props) {
         super(props)
@@ -13,8 +13,8 @@ class BStep2 extends Component {
         }
         return (
             <React.Fragment>
-                <FormControl controlId="username">
-                    <InputLabel >Username</InputLabel>
+                <FormControl>
+                    <InputLabel>Username</InputLabel>
                     <Input
                         type="text"
                         placeholder="Enter username"
@@ -28,4 +28,4 @@ class BStep2 extends Component {
     }
 }
 
-export default BStep2;
+export default Step2;

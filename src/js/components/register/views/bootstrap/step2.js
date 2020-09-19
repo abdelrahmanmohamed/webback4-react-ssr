@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 
-class BStep2 extends Component {
+class Step2 extends Component {
 
     constructor(props) {
         super(props)
@@ -28,4 +28,4 @@ class BStep2 extends Component {
     }
 }
 
-export default BStep2;
+export default Step2;

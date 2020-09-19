@@ -2,49 +2,26 @@
 import express from 'express';
 import React from 'react';
 import {renderToString} from 'react-dom/server';
-import {ServerStyleSheet} from 'styled-components';
 
-import App from './components/FormHtml/App';
-import BootstrapApp from './components/FormBootstrap/BootstrapApp';
-import MaterialApp from './components/FormMaterial/MaterialApp';
-import Layout from './components/Layout';
+import HtmlApp from './components/register/views/html/app';
+import BootstrapApp from './components/register/views/bootstrap/app';
+import MaterialApp from './components/register/views/material/app';
 
 const port = 3000;
 const server = express();
 
 const cors = require('cors');
 
+server.use(express.json());
 server.use(cors())
 server.use(express.static('dist'));
 server.use(express.static('images'));
 
-
-function renderComponent(component) {
-    const sheet = new ServerStyleSheet();
-
-    const body = renderToString(sheet.collectStyles(component)); // get styles
-    const styles = sheet.getStyleTags(); // getting all the tags from the sheet
-
-    return {
-        body,
-        styles, // passing the styles to our Layout template
-    };
-}
-
-// Creating a single index route to server our React application from.
-server.get('/aaa', (req, res) => {
-    const title = 'React Server Side Rendering with Styled Components';
-    const renderedComponent = renderComponent(<App/>);
-    res.set('Content-Type', 'text/html')
-      .set('Access-Control-Allow-Origin', ' *')
-      .send(Layout({title, ...renderedComponent}));
-});
-
 server.get('/', (req, res) => {
-    const wrapDivStart = `<div id="app">`;
-    const body = renderToString(<App/>);
+    const wrapDivStart = `<div id="registerApp">`;
+    const body = renderToString(<HtmlApp/>);
     const wrapDivEnd = `</div>`;
-    const hydrateScript = `<script src="http://localhost:3000/htmlClient.js"></script>`;
+    const hydrateScript = `<script src="http://localhost:3000/registerHtmlClient.js"></script>`;
     const result = wrapDivStart + body + wrapDivEnd + hydrateScript;
     res.set('Content-Type', 'text/html')
         .set('Access-Control-Allow-Origin', ' *')
@@ -52,10 +29,10 @@ server.get('/', (req, res) => {
 });
 
 server.get('/bootstrap', (req, res) => {
-    const wrapDivStart = `<div id="bootstrapApp">`;
-    const body = renderToString(<BootstrapApp />);
+    const wrapDivStart = `<div id="registerApp">`;
+    const body = renderToString(<BootstrapApp/>);
     const wrapDivEnd = `</div>`;
-    const hydrateScript = `<script src="http://localhost:3000/bootstrapClient.js"></script>`;
+    const hydrateScript = `<script src="http://localhost:3000/registerBootstrapClient.js"></script>`;
     const result = wrapDivStart + body + wrapDivEnd + hydrateScript;
     res.set('Content-Type', 'text/html')
         .set('Access-Control-Allow-Origin', ' *')
@@ -63,15 +40,46 @@ server.get('/bootstrap', (req, res) => {
 });
 
 server.get('/material', (req, res) => {
-    const wrapDivStart = `<div id="materialApp">`;
-    const body = renderToString(<MaterialApp />);
+    const wrapDivStart = `<div id="registerApp">`;
+    const body = renderToString(<MaterialApp/>);
     const wrapDivEnd = `</div>`;
-    const hydrateScript = `<script src="http://localhost:3000/materialClient.js"></script>`;
+    const hydrateScript = `<script src="http://localhost:3000/registerMaterialClient.js"></script>`;
     const result = wrapDivStart + body + wrapDivEnd + hydrateScript;
     res.set('Content-Type', 'text/html')
         .set('Access-Control-Allow-Origin', ' *')
         .send(result);
 });
 
+function getApp(style) {
+    if (style === 'Material') {
+        return <MaterialApp/>;
+    } else if (style === 'Bootstrap') {
+        return <BootstrapApp/>;
+    } else {
+        return <HtmlApp/>;
+    }
+}
+
+function normalizeStyleName(value) {
+    value = value.toLowerCase();
+    return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+server.get('/register', (req, res) => {
+    const formStyle = req.body.style ? normalizeStyleName(req.body.style) : 'Html';
+    // const formLang = req.body.lang;
+    const wrapDivStart = `<div id="registerApp">`;
+    const wrapDivEnd = `</div>`;
+    let app = renderToString(getApp(formStyle));
+    const body = wrapDivStart + app + wrapDivEnd;
+    const result = {
+        styleLink: [],
+        scriptLink: ["http://localhost:3000/register" + formStyle + "Client.js"],
+        body: body,
+    }
+    res.set('Content-Type', 'application/json')
+        .set('Access-Control-Allow-Origin', ' *')
+        .send(result);
+});
 server.listen(port);
 console.log(`Serving at http://localhost:${port}`);

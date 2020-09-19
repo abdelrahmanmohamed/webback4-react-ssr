@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-class Step2 extends Component {
-    
+class Step1 extends Component {
+   
     constructor(props) {
         super(props)
     }
 
     render() {
-        if (this.props.currentStep !== 2) {
+        if (this.props.currentStep !== 1) {
             return null
         }
         return (
             <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="email">Email address</label>
                 <input
                     className="form-control"
-                    id="username"
-                    name="username"
+                    id="email"
+                    name="email"
                     type="text"
-                    placeholder="Enter username"
-                    value={this.props.username}
+                    placeholder="Enter email"
+                    value={this.props.email}
                     onChange={this.props.handleChange}
                 />
             </div>
@@ -27,4 +27,4 @@ class Step2 extends Component {
     }
 }
 
-export default Step2;
+export default Step1;

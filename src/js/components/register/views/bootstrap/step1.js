@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { FormControl, Input, InputLabel } from '@material-ui/core';
+import React, {Component} from 'react';
+import Form from 'react-bootstrap/Form';
 
-class BStep1 extends Component {
+class Step1 extends Component {
 
     constructor(props) {
         super(props)
@@ -13,19 +13,19 @@ class BStep1 extends Component {
         }
         return (
             <React.Fragment>
-                <FormControl controlId="email">
-                    <InputLabel >Email address</InputLabel>
-                    <Input
+                <Form.Group controlId="email">
+                    <Form.Label >Email address</Form.Label>
+                    <Form.Control
                         type="email"
                         placeholder="Enter email"
                         name="email"
                         value={this.props.email}
                         onChange={this.props.handleChange}
                     />
-                </FormControl>
+                </Form.Group>
             </React.Fragment>
         );
     }
 }
 
-export default BStep1;
+export default Step1;

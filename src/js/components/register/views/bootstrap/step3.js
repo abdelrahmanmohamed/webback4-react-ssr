@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-class BStep3 extends Component {
+class Step3 extends Component {
 
     constructor(props) {
         super(props)
     }
+
     render() {
         if (this.props.currentStep !== 3) {
             return null
@@ -28,4 +29,5 @@ class BStep3 extends Component {
         );
     }
 }
-export default BStep3;
+
+export default Step3;
