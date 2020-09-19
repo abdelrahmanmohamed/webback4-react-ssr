@@ -4,7 +4,7 @@ import {FormGroup} from '@material-ui/core';
 import Step1 from './step1';
 import Step2 from './step2';
 import Step3 from './step3';
-import RegisterForm from "../RegisterForm";
+import RegisterForm from "../registerForm";
 
 class App extends RegisterForm {
     constructor(props) {
