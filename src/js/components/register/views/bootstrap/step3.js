@@ -3,11 +3,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 class Step3 extends Component {
-
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         if (this.props.currentStep !== 3) {
             return null

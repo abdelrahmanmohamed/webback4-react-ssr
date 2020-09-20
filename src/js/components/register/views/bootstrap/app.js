@@ -7,13 +7,7 @@ import Step3 from './step3';
 import RegisterForm from '../registerForm';
 
 class App extends RegisterForm {
-    constructor(props) {
-        super(props)
-    }
 
-    /*
-    * the functions for our button
-    */
     previousButton() {
         return this.registerController.previousButton(this.state, () => {
             return <Button

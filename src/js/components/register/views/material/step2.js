@@ -3,10 +3,6 @@ import {FormControl, Input, InputLabel} from '@material-ui/core';
 
 class Step2 extends Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         if (this.props.currentStep !== 2) {
             return null

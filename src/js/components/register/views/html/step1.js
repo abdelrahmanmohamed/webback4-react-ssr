@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 
 class Step1 extends Component {
-   
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         if (this.props.currentStep !== 1) {
